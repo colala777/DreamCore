@@ -13,6 +13,12 @@ public class MouseControl : MonoBehaviour
     public GameObject Screen;
     public Texture2D newTexture1, newTexture2, newTexture3;
 
+    private AudioSource TvAudio;
+
+    private void Start()
+    {
+        TvAudio = GetComponent<AudioSource>();
+    }
     void Update()
     {
         // 检测鼠标是否点击到方块
@@ -37,6 +43,7 @@ public class MouseControl : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
+                TvAudio.Play();
                 float targetY = Mathf.Clamp(hit.point.y + offsetY, minY, maxY);
 
                 transform.position = new Vector3(
@@ -52,6 +59,7 @@ public class MouseControl : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isDragging = false;
+            TvAudio.Pause();
         }
     }
 

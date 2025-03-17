@@ -15,9 +15,14 @@ public class PlayerController : MonoBehaviour
 
     public GameObject currentObj;
 
+    public GameObject DrawEvent;
+    public GameObject DairyEvent;
+    private  Camera mainCamera;   
+
     // Start is called before the first frame update
     void Start()
     {
+        mainCamera = Camera.main;
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
     }
@@ -75,17 +80,18 @@ public class PlayerController : MonoBehaviour
 
             if (currentObj.name == "Pen")
             {
-                Debug.Log("执行钢笔的交互逻辑");
+                Debug.Log("执行画笔的交互逻辑");
                 Destroy(currentObj.GetComponent<SphereCollider>());
                 currentObj.transform.Find("Prompt").gameObject.SetActive(false);
-                // 在此添加钢笔的具体交互代码
+                DrawEvent.SetActive(true);
             }
             else if (currentObj.name == "Diary")
             {
                 Debug.Log("执行日记本的交互逻辑");
                 Destroy(currentObj.GetComponent<SphereCollider>());
                 currentObj.transform.Find("Prompt").gameObject.SetActive(false);
-                // 在此添加日记本的具体交互代码
+                DairyEvent.SetActive(true);
+                mainCamera.enabled = false;
             }
         }
     }
