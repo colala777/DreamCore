@@ -10,6 +10,9 @@ public class MouseControl : MonoBehaviour
     private bool isDragging = false;
     private float offsetY;    // Êó±êºÍ·½¿éµÄÆ«ÒÆÁ¿
 
+    public GameObject Screen;
+    public Texture2D newTexture1, newTexture2, newTexture3;
+
     void Update()
     {
         // ¼ì²âÊó±êÊÇ·ñµã»÷µ½·½¿é
@@ -54,17 +57,22 @@ public class MouseControl : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Material material = Screen.GetComponent<Renderer>().material;
+        string texturePropertyName = "_MainTex";
         if (other.gameObject.name == "Pos1")
         {
-            Debug.Log("Í¼Æ¬1");
+            //Debug.Log("Í¼Æ¬1");
+            material.SetTexture(texturePropertyName, newTexture1);
         }
         else if (other.gameObject.name == "Pos2")
         {
-            Debug.Log("Í¼Æ¬2");
+            //Debug.Log("Í¼Æ¬2");
+            material.SetTexture(texturePropertyName, newTexture2);
         }
         else if (other.gameObject.name == "Pos3")
         {
-            Debug.Log("Í¼Æ¬3");
+            //Debug.Log("Í¼Æ¬3");
+            material.SetTexture(texturePropertyName, newTexture3);
         }
     }
 }

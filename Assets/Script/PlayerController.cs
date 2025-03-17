@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private Animator animator;
 
+    public GameObject currentObj;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,11 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        HandleMovement();
+        HandleInteraction();
+    }
+    private void HandleMovement()
     {
         // 获取玩家输入
         float horizontal = Input.GetAxis("Horizontal");
@@ -52,10 +60,59 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            velocity.y = -1f; 
+            velocity.y = -1f;
         }
 
         // 执行移动
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void HandleInteraction()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (currentObj == null) return;
+
+            if (currentObj.name == "Pen")
+            {
+                Debug.Log("执行钢笔的交互逻辑");
+                Destroy(currentObj.GetComponent<SphereCollider>());
+                currentObj.transform.Find("Prompt").gameObject.SetActive(false);
+                // 在此添加钢笔的具体交互代码
+            }
+            else if (currentObj.name == "Diary")
+            {
+                Debug.Log("执行日记本的交互逻辑");
+                Destroy(currentObj.GetComponent<SphereCollider>());
+                currentObj.transform.Find("Prompt").gameObject.SetActive(false);
+                // 在此添加日记本的具体交互代码
+            }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        currentObj = other.gameObject;
+        if (other.gameObject.name == "Pen")
+        {            
+            other.transform.Find("Prompt").gameObject.SetActive(true);
+        }
+        if (other.gameObject.name == "Diary")
+        {
+            other.transform.Find("Prompt").gameObject.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        currentObj = null;
+        if (other.gameObject.name == "Pen")
+        {
+            other.transform.Find("Prompt").gameObject.SetActive(false);
+        }
+        if (other.gameObject.name == "Diary")
+        {
+            other.transform.Find("Prompt").gameObject.SetActive(false);
+        }
     }
 }
