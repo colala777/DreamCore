@@ -1,7 +1,7 @@
 // Scripts/ScratchController.cs
 using UnityEngine;
 
-public class ScratchController : MonoBehaviour
+public class R1ScratchController : MonoBehaviour
 {
     public Camera mainCamera;
     public RenderTexture maskTexture;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// 刮刮乐UI
-public class ScratchUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class R1ScratchUI : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
 
     // 绘制的目标图片

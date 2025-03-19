@@ -19,7 +19,10 @@ public class PlayerController : MonoBehaviour
 
     public GameObject DrawEvent;
     public GameObject DairyEvent;
+    public GameObject ToyEvent;
     private Camera mainCamera;
+
+    private int isCollectToy = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +37,12 @@ public class PlayerController : MonoBehaviour
     {
         HandleMovement();
         HandleInteraction();
+        if(isCollectToy == 2)
+        {
+            isCollectToy = 3;
+            ToyEvent.SetActive(true);
+            mainCamera.gameObject.SetActive(false);
+        }
     }
     private void HandleMovement()
     {
@@ -98,11 +107,15 @@ public class PlayerController : MonoBehaviour
             }
             else if (currentObj.name == "Head_toy")
             {
-                Debug.Log("执行Head_toy的交互逻辑");
+                //Debug.Log("执行Head_toy的交互逻辑");
+                isCollectToy++;
+                currentObj.SetActive(false);
             }
             else if (currentObj.name == "Body_toy")
             {
-                Debug.Log("执行Body_toy的交互逻辑");
+                //Debug.Log("执行Body_toy的交互逻辑");
+                isCollectToy++;
+                currentObj.SetActive(false);
             }
         }
     }

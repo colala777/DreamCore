@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MouseControl : MonoBehaviour
+public class R2MouseControl : MonoBehaviour
 {
     public float minY = 0f;    // Y轴最小值
     public float maxY = 5f;    // Y轴最大值
@@ -83,6 +84,13 @@ public class MouseControl : MonoBehaviour
             //Debug.Log("图片3");
             TvAudioSource.PlayOneShot(TvAudio);
             material.SetTexture(texturePropertyName, newTexture3);
+            Invoke("SceneJump", 5); //跳转到下一个场景 房间3
+            
         }
+    }
+
+    private void SceneJump()
+    {
+        SceneManager.LoadScene("Room3");
     }
 }
