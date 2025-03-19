@@ -13,11 +13,12 @@ public class MouseControl : MonoBehaviour
     public GameObject Screen;
     public Texture2D newTexture1, newTexture2, newTexture3;
 
-    private AudioSource TvAudio;
+    public AudioClip TvAudio;
+    private AudioSource TvAudioSource;
 
     private void Start()
     {
-        TvAudio = GetComponent<AudioSource>();
+        TvAudioSource = GetComponent<AudioSource>();
     }
     void Update()
     {
@@ -43,7 +44,6 @@ public class MouseControl : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                TvAudio.Play();
                 float targetY = Mathf.Clamp(hit.point.y + offsetY, minY, maxY);
 
                 transform.position = new Vector3(
@@ -59,7 +59,6 @@ public class MouseControl : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             isDragging = false;
-            TvAudio.Pause();
         }
     }
 
@@ -70,16 +69,19 @@ public class MouseControl : MonoBehaviour
         if (other.gameObject.name == "Pos1")
         {
             //Debug.Log("ͼƬ1");
+            TvAudioSource.PlayOneShot(TvAudio);
             material.SetTexture(texturePropertyName, newTexture1);
         }
         else if (other.gameObject.name == "Pos2")
         {
             //Debug.Log("ͼƬ2");
+            TvAudioSource.PlayOneShot(TvAudio);
             material.SetTexture(texturePropertyName, newTexture2);
         }
         else if (other.gameObject.name == "Pos3")
         {
             //Debug.Log("ͼƬ3");
+            TvAudioSource.PlayOneShot(TvAudio);
             material.SetTexture(texturePropertyName, newTexture3);
         }
     }

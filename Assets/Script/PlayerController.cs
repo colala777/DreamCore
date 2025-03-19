@@ -93,6 +93,14 @@ public class PlayerController : MonoBehaviour
                 DairyEvent.SetActive(true);
                 mainCamera.enabled = false;
             }
+            else if (currentObj.name == "Head_toy")
+            {
+                Debug.Log("执行Head_toy的交互逻辑");
+            }
+            else if (currentObj.name == "Body_toy")
+            {
+                Debug.Log("执行Body_toy的交互逻辑");
+            }
         }
     }
 
@@ -107,6 +115,14 @@ public class PlayerController : MonoBehaviour
         {
             other.transform.Find("Prompt").gameObject.SetActive(true);
         }
+        if (other.gameObject.name == "Body_toy")
+        {
+            other.transform.Find("Prompt").gameObject.SetActive(true);
+        }
+        if (other.gameObject.name == "Head_toy")
+        {
+            other.transform.Find("Prompt").gameObject.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -117,6 +133,14 @@ public class PlayerController : MonoBehaviour
             other.transform.Find("Prompt").gameObject.SetActive(false);
         }
         if (other.gameObject.name == "Diary")
+        {
+            other.transform.Find("Prompt").gameObject.SetActive(false);
+        }
+        if (other.gameObject.name == "Body_toy")
+        {
+            other.transform.Find("Prompt").gameObject.SetActive(false);
+        }
+        if (other.gameObject.name == "Head_toy")
         {
             other.transform.Find("Prompt").gameObject.SetActive(false);
         }
