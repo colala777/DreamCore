@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Move")]
     public float moveSpeed = 5f;   // 移动速度
     private float rotationSpeed = 720f; 
     private float gravity = 9.81f;
@@ -13,11 +14,12 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private Animator animator;
 
+    [Header("Interact")]
     public GameObject currentObj;
 
     public GameObject DrawEvent;
     public GameObject DairyEvent;
-    private  Camera mainCamera;   
+    private Camera mainCamera;
 
     // Start is called before the first frame update
     void Start()
@@ -80,18 +82,19 @@ public class PlayerController : MonoBehaviour
 
             if (currentObj.name == "Pen")
             {
-                Debug.Log("执行画笔的交互逻辑");
+                //Debug.Log("执行画笔的交互逻辑");
                 Destroy(currentObj.GetComponent<SphereCollider>());
                 currentObj.transform.Find("Prompt").gameObject.SetActive(false);
                 DrawEvent.SetActive(true);
+                mainCamera.gameObject.SetActive(false);
             }
             else if (currentObj.name == "Diary")
             {
-                Debug.Log("执行日记本的交互逻辑");
+                //Debug.Log("执行日记本的交互逻辑");
                 Destroy(currentObj.GetComponent<SphereCollider>());
                 currentObj.transform.Find("Prompt").gameObject.SetActive(false);
                 DairyEvent.SetActive(true);
-                mainCamera.enabled = false;
+                mainCamera.gameObject.SetActive(false);
             }
             else if (currentObj.name == "Head_toy")
             {
