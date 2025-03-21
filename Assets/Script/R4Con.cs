@@ -32,7 +32,7 @@ public class R4Con : MonoBehaviour
                     clock.SetActive(false);
                     schedule.SetActive(true);
                 }
-                else if (hit.transform.name == "Clock") 
+                else if (hit.transform.name == "Clock_Body") 
                 {
                     clockEvent.SetActive(true);
                     clockEvent.GetComponent<AutoDeactivate>().delayTime = 120;
