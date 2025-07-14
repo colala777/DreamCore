@@ -84,7 +84,8 @@ public class R2MouseControl : MonoBehaviour
             //Debug.Log("图片3");
             TvAudioSource.PlayOneShot(TvAudio);
             material.SetTexture(texturePropertyName, newTexture3);
-            Invoke("SceneJump", 5); //跳转到下一个场景 房间3
+            Camera.main.gameObject.GetComponent<R2CameraShake>().enabled = true;
+            Invoke("SceneJump", 6); //跳转到下一个场景 房间3
             
         }
     }

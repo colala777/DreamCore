@@ -16,7 +16,13 @@ public class R4Con : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Camera.main == null) return;
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         // 检测鼠标是否点击到方块
         if (Input.GetMouseButtonDown(0))
         {

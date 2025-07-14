@@ -26,9 +26,15 @@ public class BGMManager : MonoBehaviour
 
     private void Update()
     {
+
         if (SceneManager.GetActiveScene().name == "Room4")
         {
             Destroy(gameObject); // 最后一个场景销毁bgm01
+        }
+        // 检测ESC键按下
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
         }
     }
 
